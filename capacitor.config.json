@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Mealist",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

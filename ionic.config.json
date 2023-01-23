@@ -1,0 +1,8 @@
+{
+  "name": "Mealist",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "eba7525f"
+}
