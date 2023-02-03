@@ -1,0 +1,49 @@
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+    display: flex;
+    flex-flow: column-reverse;
+  }
+
+.section{
+  margin-top: 10%;
+  font-weight: 400;
+}
+
+.recent-searches-cards{
+  margin-top: 20px;
+}
+
+.recipe-title{
+  font-weight: bold;
+  text-align: left;
+}
+
+.recipe-card{
+  width: 200px;
+  height: 375px;
+}
+
+.nutrient-title{
+  text-align: left;
+}
+
+.recipe-card-content{
+  text-align: left;
+}
+
+.card-button-col{
+  text-align: right;
+  margin-top: auto;
+}
+
+.card-add-btn{
+  width: 40px;
+}
+
+.btn-icon{
+  color: white;
+}
+
+.recipe-img{
+  border-radius: 5px;
+}
