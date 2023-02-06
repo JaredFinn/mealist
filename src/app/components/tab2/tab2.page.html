@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-list>
+      <ion-list-header>
+        Dairy
+      </ion-list-header>
+      <ion-item *ngFor="let item of dairyItems">
+        {{ item }}
+      </ion-item>
+    </ion-list>
+  
+    <ion-list>
+      <ion-list-header>
+        Meat
+      </ion-list-header>
+      <ion-item *ngFor="let item of meatItems">
+        {{ item }}
+      </ion-item>
+    </ion-list>
+  
+    <!-- Add more food groups as needed -->
+  
+</ion-content>

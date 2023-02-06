@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,7 +8,20 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+
+  constructor(private recipeService: RecipeService) {}
+
+  showContent = false;
+
+  hideContent() {
+    this.showContent = !this.showContent;
+  }
+
+  getRecipes() {
+    this.recipeService.getRecipes().subscribe(data => {
+      console.log(data);
+  });
+  }
 
   recipes = [
     {

@@ -1,18 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
  
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-searchbar showCancelButton="focus" (ionCancel)="hideContent()" (ionFocus)="hideContent()" class="searchbar" animated="true" placeholder="Search for a recipe"></ion-searchbar>
   
   
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+  <ion-content *ngIf="!showContent">
 
-  <ion-content >
+
     <ion-title class="section">Recent Searches</ion-title>
     <ion-slides class="recent-searches-cards" [options]="slideOpts">
       <ion-slide *ngFor="let recipe of recipes">
@@ -31,7 +30,7 @@
                 <ion-text class="nutrient-title">Proteins:</ion-text>
               </ion-col>
               <ion-col class="card-button-col">
-                <ion-button class="card-add-btn">
+                <ion-button class="card-add-btn" (click)="getRecipes()">
                     <ion-icon class="btn-icon" name="add-outline"></ion-icon>
                 </ion-button>
               </ion-col>
@@ -72,11 +71,41 @@
         </ion-card>
       </ion-slide>
     </ion-slides>
+
+    <ion-title class="section">Favorites</ion-title>
+    <ion-slides class="recent-searches-cards" [options]="slideOpts">
+      <ion-slide *ngFor="let recipe of recipes">
+        <ion-card class="recipe-card">
+          <ion-card-header>
+            <ion-img class="recipe-img" [src]="recipe.image" alt=""></ion-img>
+            <ion-card-title class="recipe-title">{{ recipe.title }}</ion-card-title>
+          </ion-card-header>
+  
+          <ion-card-content class="recipe-card-content">
+            <ion-row>
+              <ion-col>
+                <ion-text class="nutrient-title">Calories:</ion-text><br>
+                <ion-text class="nutrient-title">Fats:</ion-text><br>
+                <ion-text class="nutrient-title">Sodium:</ion-text><br>
+                <ion-text class="nutrient-title">Proteins:</ion-text>
+              </ion-col>
+              <ion-col class="card-button-col">
+                <ion-button class="card-add-btn">
+                    <ion-icon class="btn-icon" name="add-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            
+
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
   </ion-content>
-  
- 
-  
- 
-  
- 
+
+
+
+
 </ion-content>
+  

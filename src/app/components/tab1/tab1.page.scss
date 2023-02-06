@@ -5,7 +5,7 @@ ion-card-header.ios {
   }
 
 .section{
-  margin-top: 10%;
+  margin-top: 5%;
   font-weight: 400;
 }
 
@@ -46,4 +46,16 @@ ion-card-header.ios {
 
 .recipe-img{
   border-radius: 5px;
+}
+
+.search-icon{
+  margin: 2%;
+}
+
+.search-mode {
+  background-color: lightgrey;
+}
+
+.searchbar{
+  padding: 25px;
 }

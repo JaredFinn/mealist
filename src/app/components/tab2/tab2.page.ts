@@ -9,4 +9,7 @@ export class Tab2Page {
 
   constructor() {}
 
+  dairyItems = ['Milk', 'Cheese', 'Yogurt'];
+  meatItems = ['Beef', 'Pork', 'Chicken'];
+
 }
