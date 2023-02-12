@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,9 +8,12 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  ingredients: { ingredient_id: number; ingredient_name: string; }[] | undefined;
 
-  dairyItems = ['Milk', 'Cheese', 'Yogurt'];
-  meatItems = ['Beef', 'Pork', 'Chicken'];
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit(){
+    this.ingredients = this.recipeService.getStoredIngredients();
+  }
 
 }

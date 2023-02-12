@@ -1,36 +1,41 @@
-<ion-header>
- 
+<ion-header #header>
+  <ion-toolbar>
+    <ion-title class="app-title">Mealist</ion-title>
+  </ion-toolbar>
 </ion-header>
-
-
-<ion-content [fullscreen]="true">
-
-  <ion-searchbar showCancelButton="focus" (ionCancel)="hideContent()" (ionFocus)="hideContent()" class="searchbar" animated="true" placeholder="Search for a recipe"></ion-searchbar>
   
   
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
-  <ion-content *ngIf="!showContent">
+  <ion-content *ngIf="!showContent" [fullscreen]="true" scrollEvents="true" [appHideHeader]="header">
 
+    <ion-grid>
+      <ion-row>
+        <ion-col>1</ion-col>
+        <ion-col size="5">2</ion-col>
+        <ion-col>3</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>1</ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-title class="section">Recent Searches</ion-title>
+    <ion-title class="section">Trending</ion-title>
     <ion-slides class="recent-searches-cards" [options]="slideOpts">
       <ion-slide *ngFor="let recipe of recipes">
         <ion-card class="recipe-card">
           <ion-card-header>
-            <ion-img class="recipe-img" [src]="recipe.image" alt=""></ion-img>
-            <ion-card-title class="recipe-title">{{ recipe.title }}</ion-card-title>
+                    <!-- <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img> -->
+                    <ion-img class="recipe-img" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
+           
           </ion-card-header>
   
           <ion-card-content class="recipe-card-content">
             <ion-row>
               <ion-col>
-                <ion-text class="nutrient-title">Calories:</ion-text><br>
-                <ion-text class="nutrient-title">Fats:</ion-text><br>
-                <ion-text class="nutrient-title">Sodium:</ion-text><br>
-                <ion-text class="nutrient-title">Proteins:</ion-text>
+                <ion-card-title class="recipe-title">{{ recipe.recipe_name }}</ion-card-title>
               </ion-col>
               <ion-col class="card-button-col">
-                <ion-button class="card-add-btn" (click)="getRecipes()">
+                <ion-button class="card-add-btn" (click)="storeRecipeIngredients(recipe.recipe_id)">
                     <ion-icon class="btn-icon" name="add-outline"></ion-icon>
                 </ion-button>
               </ion-col>
@@ -42,25 +47,21 @@
       </ion-slide>
     </ion-slides>
 
-    <ion-title class="section">Trending</ion-title>
+    <ion-title class="section">Recent Searches</ion-title>
     <ion-slides class="recent-searches-cards" [options]="slideOpts">
       <ion-slide *ngFor="let recipe of recipes">
         <ion-card class="recipe-card">
           <ion-card-header>
-            <ion-img class="recipe-img" [src]="recipe.image" alt=""></ion-img>
-            <ion-card-title class="recipe-title">{{ recipe.title }}</ion-card-title>
+            <!-- <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img> -->
+            <ion-img class="recipe-img" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
+            <ion-card-title class="recipe-title">{{ recipe.recipe_name }}</ion-card-title>
           </ion-card-header>
   
           <ion-card-content class="recipe-card-content">
             <ion-row>
-              <ion-col>
-                <ion-text class="nutrient-title">Calories:</ion-text><br>
-                <ion-text class="nutrient-title">Fats:</ion-text><br>
-                <ion-text class="nutrient-title">Sodium:</ion-text><br>
-                <ion-text class="nutrient-title">Proteins:</ion-text>
-              </ion-col>
+
               <ion-col class="card-button-col">
-                <ion-button class="card-add-btn">
+                <ion-button class="card-add-btn" (click)="storeRecipeIngredients(recipe.recipe_id)">
                     <ion-icon class="btn-icon" name="add-outline"></ion-icon>
                 </ion-button>
               </ion-col>
@@ -77,20 +78,16 @@
       <ion-slide *ngFor="let recipe of recipes">
         <ion-card class="recipe-card">
           <ion-card-header>
-            <ion-img class="recipe-img" [src]="recipe.image" alt=""></ion-img>
-            <ion-card-title class="recipe-title">{{ recipe.title }}</ion-card-title>
+            <!-- <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img> -->
+            <ion-img class="recipe-img" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
+            <ion-card-title class="recipe-title">{{ recipe.recipe_name }}</ion-card-title>
           </ion-card-header>
   
           <ion-card-content class="recipe-card-content">
             <ion-row>
-              <ion-col>
-                <ion-text class="nutrient-title">Calories:</ion-text><br>
-                <ion-text class="nutrient-title">Fats:</ion-text><br>
-                <ion-text class="nutrient-title">Sodium:</ion-text><br>
-                <ion-text class="nutrient-title">Proteins:</ion-text>
-              </ion-col>
+
               <ion-col class="card-button-col">
-                <ion-button class="card-add-btn">
+                <ion-button class="card-add-btn" (click)="storeRecipeIngredients(recipe.recipe_id)">
                     <ion-icon class="btn-icon" name="add-outline"></ion-icon>
                 </ion-button>
               </ion-col>
@@ -107,5 +104,3 @@
 
 
 
-</ion-content>
-  

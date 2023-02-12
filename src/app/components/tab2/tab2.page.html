@@ -8,12 +8,20 @@
 
 <ion-content [fullscreen]="true">
 
-    <ion-list>
+  <ion-list>
+    <ion-item *ngFor="let ingredient of ingredients">
+        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-label>{{ ingredient.ingredient_name }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+    <!-- <ion-list>
       <ion-list-header>
         Dairy
       </ion-list-header>
       <ion-item *ngFor="let item of dairyItems">
-        {{ item }}
+          <ion-checkbox slot="start"></ion-checkbox>
+          <ion-label>{{ item }}</ion-label>
       </ion-item>
     </ion-list>
   
@@ -21,10 +29,11 @@
       <ion-list-header>
         Meat
       </ion-list-header>
-      <ion-item *ngFor="let item of meatItems">
-        {{ item }}
-      </ion-item>
-    </ion-list>
+      <ion-item *ngFor="let item of dairyItems">
+        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-label>{{ item }}</ion-label>
+    </ion-item>
+    </ion-list> -->
   
     <!-- Add more food groups as needed -->
   

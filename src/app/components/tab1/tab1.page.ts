@@ -1,6 +1,7 @@
 import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -8,61 +9,38 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class Tab1Page {
 
-
-  constructor(private recipeService: RecipeService) {}
-
+  recipes: { recipe_id: number; recipe_name: string; recipe_image: string; }[] | undefined;
   showContent = false;
+  
+  slideOpts = {
+		slidesPerView: 2.4,
+		spaceBetween: 10,
+		freeMode: true
+	};
+
+  constructor(private recipeService: RecipeService) {  }
+
+
+  ngOnInit(){
+    this.getRecipes();
+  }
 
   hideContent() {
     this.showContent = !this.showContent;
   }
 
   getRecipes() {
-    this.recipeService.getRecipes().subscribe(data => {
-      console.log(data);
-  });
+    this.recipeService.getRecipes().subscribe((data) => {
+        this.recipes = data;
+    });
   }
 
-  recipes = [
-    {
-      title: 'Beeria Tacos',
-      calories: '',
-      fats: '',
-      sodium: '',
-      proteins: '',
-      image: '/assets/tacos.jpg'
-    },
-    {
-      title: 'Baked Ziti',
-      calories: '',
-      fats: '',
-      sodium: '',
-      proteins: '',
-      image: '/assets/baked-ziti.jpg'
-    },
-    {
-      title: 'Berry French Toast',
-      calories: '',
-      fats: '',
-      sodium: '',
-      proteins: '',
-      image: '/assets/berry-french-toast.jpg'
-    },
-    {
-      title: 'Steak & Potatoes',
-      calories: '',
-      fats: '',
-      sodium: '',
-      proteins: '',
-      image: '/assets/steak-potatoes.jpg'
-    }
-  ];
+  getImage(recipe_image: string): string {
+    const basePath = "assets/recipe-images/"
+    return basePath + recipe_image;
+  }
 
-  slideOpts = {
-    slidesPerView: 2,
-    loop: true,
-    centeredSlides: true,
-    freeMode: true,
-  };
-
+  storeRecipeIngredients(recipe_id: number){
+    this.recipeService.storeRecipeIngredients(recipe_id);
+  }
 }
