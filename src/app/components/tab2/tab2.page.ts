@@ -8,12 +8,13 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class Tab2Page {
 
-  ingredients: { ingredient_id: number; ingredient_name: string; }[] | undefined;
+  ingredients: { ingredient_id: number; ingredient_name: string; }[] = [];
 
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(){
-    this.ingredients = this.recipeService.getStoredIngredients();
+    this.ingredients = this.recipeService.getGroceryList();
+    console.log(this.ingredients);
   }
 
 }

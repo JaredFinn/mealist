@@ -40,7 +40,11 @@ export class Tab1Page {
     return basePath + recipe_image;
   }
 
-  storeRecipeIngredients(recipe_id: number){
+  addRecipeToList(recipe_id: number){
     this.recipeService.storeRecipeIngredients(recipe_id);
+  }
+
+  addFeaturedRecipe(){
+    this.recipeService.storeRecipeIngredients(8);
   }
 }

@@ -4,28 +4,98 @@ ion-card-header.ios {
     flex-flow: column-reverse;
   }
 
+  ion-content{
+    --offset-top: 0px;
+    position: absolute;
+  }
+
+  ion-toolbar{
+    --background: none;
+  }
+
   .app-title{
     font-size: 32px;
     font-family: 'Inter', sans-serif;
   }
 
+  .card-title{
+    margin-top: 20px;
+  }
+
 .section{
-  margin-top: 5%;
-  font-weight: 400;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 22px;
 }
 
-.recent-searches-cards{
-  margin-top: 20px;
+.slides{
+  padding: 10px;
+}
+
+.slide{
+  height: 180px;
+
+}
+
+.spotlight-btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.spotlight-title{
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  font-size: 40px;
+}
+
+.featured-title{
+  margin: 10px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.recipe-container{
+  height: 180px;
 }
 
 .recipe-title{
-  font-weight: bold;
   text-align: left;
+  font-size: 16px;
+  padding: 0;
+  margin-left: 10px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .recipe-card{
-  width: 200px;
-  height: 300px;
+  width: 220px;
+  height: 148px;
+}
+
+.card-header{
+  display: flex;
+}
+
+.spotlight-add-btn{
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.add-btn{
+  width: 40px;
+  height: 40px;
+
+  .btn-icon{
+    color: whitesmoke;
+  }
 }
 
 .nutrient-title{
@@ -33,7 +103,8 @@ ion-card-header.ios {
 }
 
 .recipe-card-content{
-  text-align: left;
+  display: block;
+
 }
 
 .card-button-col{
@@ -42,7 +113,7 @@ ion-card-header.ios {
 }
 
 .card-add-btn{
-  width: 40px;
+  width: 100%;
 }
 
 .btn-icon{
@@ -78,9 +149,40 @@ ion-header {
   }
 }
 
-ion-col {
-  background-color: #135d54;
-  border: solid 1px #fff;
-  color: #fff;
-  text-align: center;
+.overlay {
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
+}
+
+.spotlight{
+
+
+  .large-spotlight {
+    border-bottom: solid 1px #fff;
+    color: #fff;
+    text-align: center;
+    height: 100%;
+  }
+
+  .small-spotlight {
+    border-right: solid 1px #fff;
+    color: #fff;
+    text-align: center;
+    height: 130px;
+  }
+
+  .last{
+    border-right: none !important;
+  }
+}
+
+ion-toolbar {
+  --background-color: transparent;
+  --ion-color-base: transparent !important;
 }

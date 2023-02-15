@@ -1,6 +1,6 @@
-<ion-header #header>
+<ion-header class="ion-no-border" #header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="app-title">Mealist</ion-title>
+    <ion-searchbar placeholder="Search any recipe"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
   
@@ -8,95 +8,75 @@
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
   <ion-content [appHideHeader]="header" *ngIf="!showContent" [fullscreen]="true" scrollEvents="true" >
 
-    <ion-grid>
-      <ion-row>
-        <ion-col>1</ion-col>
-        <ion-col size="5">2</ion-col>
-        <ion-col>3</ion-col>
+    <ion-grid class="spotlight">
+      <ion-row >
+        <ion-col class="large-spotlight">
+          <ion-title class="spotlight-title">Featured Meal</ion-title>
+          <ion-button expand="block" class="spotlight-btn" (click)="addFeaturedRecipe()">
+            Add Baked Mac & Cheese 
+          </ion-button>
+
+          <ion-img class="large-spotlight-image" src="assets/recipe-images/Baked-mac-cheese-hero.jpg" alt=""></ion-img>
+        </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>1</ion-col>
-      </ion-row>
+      <!-- <ion-row>
+        <ion-col class="small-spotlight">
+          <ion-img class="large-spotlight-image" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
+        </ion-col>
+        <ion-col class="small-spotlight" size="4">
+          <ion-img class="large-spotlight-image" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
+        </ion-col>
+        <ion-col class="small-spotlight last">
+          <ion-img class="large-spotlight-image" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
+        </ion-col>
+      </ion-row> -->
+      
     </ion-grid>
 
-    <ion-title class="section">Trending</ion-title>
-    <ion-slides class="recent-searches-cards" [options]="slideOpts">
-      <ion-slide *ngFor="let recipe of recipes">
-        <ion-card class="recipe-card">
-          <ion-card-header>
-                    <!-- <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img> -->
-                    <ion-img class="recipe-img" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
-           
-          </ion-card-header>
-  
-          <ion-card-content class="recipe-card-content">
-            <ion-row>
-              <ion-col>
-                <ion-card-title class="recipe-title">{{ recipe.recipe_name }}</ion-card-title>
-              </ion-col>
-              <ion-col class="card-button-col">
-                <ion-button class="card-add-btn" (click)="storeRecipeIngredients(recipe.recipe_id)">
-                    <ion-icon class="btn-icon" name="add-outline"></ion-icon>
-                </ion-button>
-              </ion-col>
-            </ion-row>
-            
-
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
-
     <ion-title class="section">Recent Searches</ion-title>
-    <ion-slides class="recent-searches-cards" [options]="slideOpts">
-      <ion-slide *ngFor="let recipe of recipes">
-        <ion-card class="recipe-card">
-          <ion-card-header>
-            <!-- <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img> -->
-            <ion-img class="recipe-img" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
-            <ion-card-title class="recipe-title">{{ recipe.recipe_name }}</ion-card-title>
-          </ion-card-header>
-  
-          <ion-card-content class="recipe-card-content">
+    <ion-slides class="slides" [options]="slideOpts">
+      <ng-container *ngFor="let recipe of recipes">
+        <ion-slide *ngIf="recipe.recipe_id % 2 == 0">
+          <ion-col>
             <ion-row>
-
-              <ion-col class="card-button-col">
-                <ion-button class="card-add-btn" (click)="storeRecipeIngredients(recipe.recipe_id)">
-                    <ion-icon class="btn-icon" name="add-outline"></ion-icon>
-                </ion-button>
-              </ion-col>
+              <ion-card class="recipe-card">
+                <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+                <ion-fab vertical="bottom" horizontal="end">
+                  <ion-fab-button class="add-btn" (click)="addRecipeToList(recipe.recipe_id)">
+                    <ion-icon class="btn-icon" name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </ion-card>
             </ion-row>
-            
-
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
+            <ion-row class="card-title">
+              <ion-title class="recipe-title">{{recipe.recipe_name}}</ion-title>
+            </ion-row>
+          </ion-col>
+          </ion-slide>
+      </ng-container>
     </ion-slides>
 
     <ion-title class="section">Favorites</ion-title>
-    <ion-slides class="recent-searches-cards" [options]="slideOpts">
-      <ion-slide *ngFor="let recipe of recipes">
-        <ion-card class="recipe-card">
-          <ion-card-header>
-            <!-- <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img> -->
-            <ion-img class="recipe-img" src="assets/recipe-images/placeholder.jpg" alt=""></ion-img>
-            <ion-card-title class="recipe-title">{{ recipe.recipe_name }}</ion-card-title>
-          </ion-card-header>
-  
-          <ion-card-content class="recipe-card-content">
+    <ion-slides class="slides" [options]="slideOpts">
+      <ng-container *ngFor="let recipe of recipes">
+        <ion-slide *ngIf="recipe.recipe_id % 2 != 0">
+          <ion-col>
             <ion-row>
-
-              <ion-col class="card-button-col">
-                <ion-button class="card-add-btn" (click)="storeRecipeIngredients(recipe.recipe_id)">
-                    <ion-icon class="btn-icon" name="add-outline"></ion-icon>
-                </ion-button>
-              </ion-col>
+              <ion-card class="recipe-card">
+                <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+                <ion-fab vertical="bottom" horizontal="end">
+                  <ion-fab-button class="add-btn" (click)="addRecipeToList(recipe.recipe_id)">
+                    <ion-icon class="btn-icon" name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </ion-card>
             </ion-row>
-            
-
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
+            <ion-row class="card-title">
+              <ion-title class="recipe-title">{{recipe.recipe_name}}</ion-title>
+            </ion-row>
+          </ion-col>
+          </ion-slide>
+      </ng-container>
     </ion-slides>
 
   </ion-content>

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RecipeService {
 
-  ingredients: { ingredient_id: number; ingredient_name: string; }[] | undefined;
+  ingredients: { ingredient_id: number; ingredient_name: string; }[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,6 @@ export class RecipeService {
   }
 
   storeRecipeIngredients(recipe_id: number){
-    console.log("here")
     const httpOptions = {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': 'http://localhost:8100',
@@ -32,11 +31,14 @@ export class RecipeService {
     };
     
     this.http.post<any>(`http://localhost:8080/recipes/ingredients/` + recipe_id, httpOptions). subscribe(data => {
-      this.ingredients = data;
+      data.forEach((element: { ingredient_id: number; ingredient_name: string; }) => {
+        this.ingredients.push({ingredient_id: element.ingredient_id, ingredient_name: element.ingredient_name});
+      });
+      console.log(this.ingredients);
     });
   }
 
-  getStoredIngredients(){
+  getGroceryList(){
     return this.ingredients;
   }
 }
