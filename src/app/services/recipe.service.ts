@@ -3,15 +3,18 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, tap } from 'rxjs';
 import { map } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
+import { ListItem } from '../models/list-item.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
 
-  ingredients: { ingredient_id: number; ingredient_name: string; }[] = [];
+  groceryList: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.getListFromDB();
+  }
 
   ngOnInit() {
     
@@ -29,16 +32,23 @@ export class RecipeService {
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
       })
     };
-    
-    this.http.post<any>(`http://localhost:8080/recipes/ingredients/` + recipe_id, httpOptions). subscribe(data => {
-      data.forEach((element: { ingredient_id: number; ingredient_name: string; }) => {
-        this.ingredients.push({ingredient_id: element.ingredient_id, ingredient_name: element.ingredient_name});
-      });
-      console.log(this.ingredients);
+    this.http.post<any>(`http://localhost:8080/recipes/ingredients/` + recipe_id, httpOptions).subscribe(() => {
+        this.getListFromDB();
     });
   }
 
+  getListFromDB(){
+    this.http.get<any>(`http://localhost:8080/list`).subscribe((data: any) => {
+      this.groceryList = data;
+      console.log(this.groceryList)
+  });;
+  }
+
   getGroceryList(){
-    return this.ingredients;
+    return this.groceryList;
+  }
+
+  deleteItems(){
+    
   }
 }

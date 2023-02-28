@@ -5,12 +5,11 @@ ion-card-header.ios {
   }
 
   ion-content{
-    --offset-top: 0px;
-    position: absolute;
+    margin: 20px;
   }
 
   ion-toolbar{
-    --background: none;
+    --background: white;
   }
 
   .app-title{
@@ -185,4 +184,9 @@ ion-header {
 ion-toolbar {
   --background-color: transparent;
   --ion-color-base: transparent !important;
+}
+
+.search-card{
+  margin-left: 30px;
+  margin-top: 20px;
 }

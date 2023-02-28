@@ -1,5 +1,17 @@
+ion-card-header.ios {
+    display: flex;
+    flex-flow: column-reverse;
+  }
+
+  ion-content{
+    margin-bottom: 20px;
+  }
+
+  ion-toolbar{
+    --background: none;
+  }
+
 .ingredient-desc{
-    font-weight: bold;
     padding-left: 20px;
 }
 
@@ -9,4 +21,32 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    
+}
+
+.category-title{
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.category-list{
+    margin-bottom: 20px;
+}
+
+.checkbox{
+    --checkmark-color: white;
+}
+
+.ellipse-btn{
+    font-size: 50px;
+}
+
+.delete{
+    color: #f75b5b;
+    text-align: center;
+}
+
+.ingredient-amount{
+    text-align: right;
 }

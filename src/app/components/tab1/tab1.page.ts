@@ -9,8 +9,11 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class Tab1Page {
 
-  recipes: { recipe_id: number; recipe_name: string; recipe_image: string; }[] | undefined;
+  recipes!: any[];
+  filteredRecipes!: any[];
   showContent = false;
+
+  rows: any[] = [];
   
   slideOpts = {
 		slidesPerView: 2.4,
@@ -18,7 +21,15 @@ export class Tab1Page {
 		freeMode: true
 	};
 
-  constructor(private recipeService: RecipeService) {  }
+  constructor(private recipeService: RecipeService) { 
+    this.rows = this.chunk(this.filteredRecipes, 2);
+   }
+
+  chunk(arr: any, size: any) {
+    return Array.from({ length: Math.ceil(arr?.length / size) }, (v, i) =>
+      arr.slice(i * size, i * size + size)
+    );
+  }
 
 
   ngOnInit(){
@@ -28,10 +39,11 @@ export class Tab1Page {
   hideContent() {
     this.showContent = !this.showContent;
   }
-
+ 
   getRecipes() {
     this.recipeService.getRecipes().subscribe((data) => {
         this.recipes = data;
+        this.filteredRecipes = this.recipes;
     });
   }
 
@@ -46,5 +58,11 @@ export class Tab1Page {
 
   addFeaturedRecipe(){
     this.recipeService.storeRecipeIngredients(8);
+  }
+
+  searchRecipes(query: any){
+    this.hideContent();
+      this.filteredRecipes = this.recipes.filter((recipe: any) => 
+          recipe.recipe_name.toLowerCase().includes(query.detail.value.toLowerCase()));
   }
 }
