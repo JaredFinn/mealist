@@ -1,5 +1,7 @@
 import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { RecipeModalPage } from '../recipe-modal/recipe-modal.page';
 
 
 @Component({
@@ -9,9 +11,14 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class Tab1Page {
 
+  @ViewChild('modal') modal: any;
+
   recipes!: any[];
   filteredRecipes!: any[];
   showContent = false;
+
+  modalOpen: boolean = false;
+  openedRecipe: any;
 
   rows: any[] = [];
   
@@ -21,7 +28,7 @@ export class Tab1Page {
 		freeMode: true
 	};
 
-  constructor(private recipeService: RecipeService) { 
+  constructor(private recipeService: RecipeService, public modalController: ModalController) { 
     this.rows = this.chunk(this.filteredRecipes, 2);
    }
 
@@ -35,6 +42,7 @@ export class Tab1Page {
   ngOnInit(){
     this.getRecipes();
   }
+  
 
   hideContent() {
     this.showContent = !this.showContent;
@@ -52,7 +60,8 @@ export class Tab1Page {
     return basePath + recipe_image;
   }
 
-  addRecipeToList(recipe_id: number){
+  addRecipeToList(event: MouseEvent, recipe_id: number){
+    event.stopPropagation();
     this.recipeService.storeRecipeIngredients(recipe_id);
   }
 
@@ -65,4 +74,19 @@ export class Tab1Page {
       this.filteredRecipes = this.recipes.filter((recipe: any) => 
           recipe.recipe_name.toLowerCase().includes(query.detail.value.toLowerCase()));
   }
+
+  async openModal(recipe: any) {
+
+    const modal = await this.modalController.create({
+      component: RecipeModalPage,
+      componentProps: {recipe: recipe},
+      cssClass: 'modal'
+    })
+    
+    await modal.present();
+  }
+
+  // async closeModal(){
+  // }
+  
 }

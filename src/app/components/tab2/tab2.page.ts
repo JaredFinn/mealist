@@ -31,11 +31,14 @@ export class Tab2Page {
     this.filteredGroceryList = this.groceryList;
   }
 
-  handleEvent(event: any){
+  handleMenuEvent(event: any){
     event.preventDefault();
     switch(event.detail.value){
       case 'Delete Selected':
-        this.deleteSelected();
+        this.deleteSelected(this.selectedItemIds);
+        break;
+      case 'Delete All':
+        this.deleteSelected(this.groceryList)
         break;
       default:
         break;
@@ -51,7 +54,7 @@ export class Tab2Page {
     console.log(this.selectedItemIds)
   }
 
-  deleteSelected(){
+  deleteSelected(items: any[]){
     this.recipeService.deleteItems(this.selectedItemIds);
   }
 

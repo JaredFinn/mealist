@@ -44,11 +44,15 @@ export class RecipeService {
   });;
   }
 
+  getIngredientForRecipe(recipe_id: number){
+    return this.http.get<any>(`http://localhost:8080/recipes/ingredients/${recipe_id}`);
+  }
+
   getGroceryList(){
     return this.groceryList;
   }
 
-  deleteItems(){
+  deleteItems(items: number[]){
     
   }
 }

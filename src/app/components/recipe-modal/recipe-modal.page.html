@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-fab vertical="top" horizontal="end">
+    <ion-fab-button class="add-btn">
+      <ion-icon class="btn-icon" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+  <ion-title class="recipe-title">{{ recipe.recipe_name }}</ion-title>
+  <ion-label class="description">Description: n/a</ion-label>
+</ion-header>
+
+<ion-content>
+  
+  
+  <ion-list class="category-list">
+    <ng-container *ngFor="let ingredient of ingredients">
+      <ion-item>
+        <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
+        <ion-label class="ingredient-amount" slot="end">{{ ingredient.measurement_qty_desc == null ? '' : ingredient.measurement_qty_desc }} {{ ingredient.measurement_desc == null ? '' : ingredient.measurement_desc }} </ion-label>
+        <ion-toggle class="toggle" [checked]="true" slot="end"></ion-toggle>
+      </ion-item>
+    </ng-container>
+    
+  </ion-list>
+</ion-content>

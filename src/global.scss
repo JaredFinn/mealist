@@ -25,62 +25,23 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-Black.ttf');
-// }
+.modal{
+    &::part(backdrop) {
+        background-color: rgb(0, 0, 0);
+    }
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-BlackItalic.ttf');
-// }
+    &::part(content) {
+        width: 80%;
+        height: 65%;
+        margin: auto;
+        border-radius: 10px;
+    }
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-Bold.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-BoldItalic.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-Italic.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-Light.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-LightItalic.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-LightItalic.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-Medium.ttf');
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-MediumItalic.ttf');
-// }
 
 @font-face {
     font-family: 'Roboto';
     src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
 }
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('./assets/fonts/Roboto/Roboto-Thin.ttf');
-// }
+

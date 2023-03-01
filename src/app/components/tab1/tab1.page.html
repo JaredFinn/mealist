@@ -40,9 +40,10 @@
           <ion-col>
             <ion-row>
               <ion-card class="recipe-card">
-                <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+                <ion-img (click)="openModal(recipe)" class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+
                 <ion-fab vertical="bottom" horizontal="end">
-                  <ion-fab-button class="add-btn" (click)="addRecipeToList(recipe.recipe_id)">
+                  <ion-fab-button class="add-btn" (click)="addRecipeToList($event, recipe.recipe_id)">
                     <ion-icon class="btn-icon" name="add"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
@@ -63,9 +64,10 @@
           <ion-col>
             <ion-row>
               <ion-card class="recipe-card">
-                <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+                <ion-img (click)="openModal(recipe)" class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+                
                 <ion-fab vertical="bottom" horizontal="end">
-                  <ion-fab-button class="add-btn" (click)="addRecipeToList(recipe.recipe_id)">
+                  <ion-fab-button class="add-btn" (click)="addRecipeToList($event, recipe.recipe_id)">
                     <ion-icon class="btn-icon" name="add"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
@@ -79,6 +81,7 @@
       </ng-container>
     </ion-slides>
 
+
   </ion-content>
 
 </ng-container>
@@ -91,9 +94,9 @@
         <ion-col class="search-card" size="5">
           <ion-row>
             <ion-card class="recipe-card">
-              <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+              <ion-img (click)="openModal(recipe)" class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
               <ion-fab vertical="bottom" horizontal="end">
-                <ion-fab-button class="add-btn" (click)="addRecipeToList(recipe.recipe_id)">
+                <ion-fab-button class="add-btn" (click)="addRecipeToList($event, recipe.recipe_id)">
                   <ion-icon class="btn-icon" name="add"></ion-icon>
                 </ion-fab-button>
               </ion-fab>

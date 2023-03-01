@@ -3,7 +3,7 @@
     <ion-searchbar placeholder="Search list" (ionChange)="filterItems($event)"></ion-searchbar>
       <ion-buttons slot="primary">
         <ion-button class="ellipse-btn">
-          <ion-select interface="action-sheet" (ionChange)="handleEvent($event)">
+          <ion-select interface="action-sheet" (ionChange)="handleMenuEvent($event)">
             <ion-select-option class="delete">Delete Selected</ion-select-option>
             <ion-select-option class="delete">Delete All</ion-select-option>
           </ion-select>
@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [appHideHeader]="header" scrollEvents="true">
 
     <ion-list class="category-list">
       <ion-list-header class="category-title">
@@ -106,5 +106,5 @@
         </ion-item>
       </ng-container>
     </ion-list>
-  
+
 </ion-content>
