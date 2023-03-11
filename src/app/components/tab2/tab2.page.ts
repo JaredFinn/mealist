@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ListItem } from 'src/app/models/list-item.model';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -14,10 +15,41 @@ export class Tab2Page {
 
   selectedItemIds: number[] = []
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, public alertController: AlertController) {
     
   }
 
+  async openAlert() {
+    const alert = await this.alertController.create({
+      header: 'List Options',
+      buttons: [
+        {
+          text: 'Delete All',
+          cssClass: 'option-delete',
+          handler: () => {
+            this.deleteSelected(this.groceryList.map((item:any) => item.item_id));
+          }
+        },
+        {
+          text: 'Delete Selected',
+          cssClass: 'option-delete',
+          handler: () => {
+            this.deleteSelected(this.selectedItemIds);
+          }
+        },
+        {
+          text: 'Cancel',
+          cssClass: 'option-cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
   //gets called every time tab component is in view
   ionViewDidEnter(): void{
@@ -38,7 +70,7 @@ export class Tab2Page {
         this.deleteSelected(this.selectedItemIds);
         break;
       case 'Delete All':
-        this.deleteSelected(this.groceryList)
+        this.deleteSelected(this.groceryList.map((item:any) => item.item_id));
         break;
       default:
         break;
@@ -47,15 +79,19 @@ export class Tab2Page {
 
   handleCheckbox(event: any, item: any){
     if(event.detail.checked){
-      this.selectedItemIds.push(item.ingredient_id);
+      this.selectedItemIds.push(item.item_id);
     }else{
-      this.selectedItemIds.splice(this.selectedItemIds.findIndex(id => id == item.ingredient_id), 1);
+      this.selectedItemIds.splice(this.selectedItemIds.findIndex(id => id == item.item_id), 1);
     }
     console.log(this.selectedItemIds)
   }
 
-  deleteSelected(items: any[]){
-    this.recipeService.deleteItems(this.selectedItemIds);
+  deleteSelected(items: number[]){
+    this.recipeService.deleteItems(items).subscribe((data: any) => {
+      this.groceryList = data;
+      this.filteredGroceryList = this.groceryList;
+      this.selectedItemIds = [];
+    });
   }
 
   filterItems(query: any) {
@@ -63,5 +99,30 @@ export class Tab2Page {
         item.ingredient_name.toLowerCase().includes(query.detail.value.toLowerCase()));
   }
 
+  handleMeasurementSpelling(itemMeasurement: string, itemQty: number){
+    if(itemQty > 1){
+      let measurement = '';
+
+      switch(itemMeasurement){
+        case 'foot':
+          measurement = 'feet';
+          break;
+        case 'inch':
+          measurement = 'inches'
+          break;
+        default:
+          measurement = itemMeasurement + 's';        
+      }
+
+      return measurement;
+
+    }else{
+      return itemMeasurement;
+    }
+  }
   
+  handleEmptyCategory(category: string){
+    return this.groceryList.some((item:any) => item.item_category === category);
+  }
+
 }

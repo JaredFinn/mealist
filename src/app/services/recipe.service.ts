@@ -40,8 +40,7 @@ export class RecipeService {
   getListFromDB(){
     this.http.get<any>(`http://localhost:8080/list`).subscribe((data: any) => {
       this.groceryList = data;
-      console.log(this.groceryList)
-  });;
+    });
   }
 
   getIngredientForRecipe(recipe_id: number){
@@ -52,7 +51,7 @@ export class RecipeService {
     return this.groceryList;
   }
 
-  deleteItems(items: number[]){
-    
+  deleteItems(items: number[]): Observable<any>{
+    return this.http.delete<any>(`http://localhost:8080/list/delete`, { body: items });
   }
 }

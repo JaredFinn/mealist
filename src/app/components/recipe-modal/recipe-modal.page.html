@@ -1,12 +1,13 @@
 <ion-header>
-  <ion-fab vertical="top" horizontal="end">
+  <!-- <ion-fab vertical="top" horizontal="end">
     <ion-fab-button class="add-btn">
       <ion-icon class="btn-icon" name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
   <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
   <ion-title class="recipe-title">{{ recipe.recipe_name }}</ion-title>
   <ion-label class="description">Description: n/a</ion-label>
+  <ion-button class="add-ingredients-btn"> + Add Ingredients </ion-button>
 </ion-header>
 
 <ion-content>

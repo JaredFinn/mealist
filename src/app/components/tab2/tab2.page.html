@@ -1,108 +1,111 @@
 <ion-header class="ion-no-border" #header [translucent]="true">
   <ion-toolbar>
     <ion-searchbar placeholder="Search list" (ionChange)="filterItems($event)"></ion-searchbar>
-      <ion-buttons slot="primary">
-        <ion-button class="ellipse-btn">
-          <ion-select interface="action-sheet" (ionChange)="handleMenuEvent($event)">
-            <ion-select-option class="delete">Delete Selected</ion-select-option>
-            <ion-select-option class="delete">Delete All</ion-select-option>
-          </ion-select>
-          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button class="ellipse-btn" (click)="openAlert()">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" [appHideHeader]="header" scrollEvents="true">
 
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Dairy')">
         Dairy
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Dairy'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Dairy'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
       
     </ion-list>
   
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Meat & Fish')">
         Meat & Fish
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Meat & Fish'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Meat & Fish'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
 
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Fruits & Vegetables')">
         Fruits & Vegetables
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Fruits & Vegetables'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Fruits & Vegetables'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
 
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Condiments & Spices')">
         Condiments & Spices
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Condiments & Spices'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Condiments & Spices'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
 
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Pasta, rice, cereals')">
         Pasta, Rice, Cereals
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Pasta, rice, cereals'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Pasta, rice, cereals'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
 
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Canned Goods')">
         Canned Goods
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Canned Goods'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Canned Goods'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
 
     <ion-list class="category-list">
-      <ion-list-header class="category-title">
+      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Bread & Baked Goods')">
         Bread & Baked Goods
       </ion-list-header>
-      <ng-container *ngFor="let ingredient of filteredGroceryList">
-        <ion-item *ngIf="ingredient.ingredient_category == 'Bread & Baked Goods'">
-          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, ingredient)"></ion-checkbox>
-          <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
-          <ion-label class="ingredient-amount"> Amt </ion-label>
+      <ng-container *ngFor="let item of filteredGroceryList">
+        <ion-item *ngIf="item.item_category == 'Bread & Baked Goods'">
+          <ion-checkbox slot="start" class="checkbox" (ionChange)="handleCheckbox($event, item)"></ion-checkbox>
+          <ion-label class="item-desc">{{ item.item_name }}</ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement === null"> {{ item.item_measurement_qty }} </ion-label>
+          <ion-label class="item-amount" *ngIf="item.item_measurement !== null"> {{ item.item_measurement_qty }} {{ handleMeasurementSpelling(item.item_measurement, item.item_measurement_qty) }} </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
