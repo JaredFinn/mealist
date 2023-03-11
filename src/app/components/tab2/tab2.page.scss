@@ -1,52 +1,34 @@
-ion-card-header.ios {
-    display: flex;
-    flex-flow: column-reverse;
-  }
-
-  ion-content{
-    margin-bottom: 20px;
-  }
-
-  ion-toolbar{
-    --background: none;
-  }
-
-.item-desc{
-    padding-left: 20px;
-}
-
-.shop-btn{
-    position: fixed;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    
-}
-
-.category-title{
-    font-size: 24px;
-    margin-left: 10px;
-    font-weight: bold;
+ .ellipse-btn{
+    font-size: 50px;
 }
 
 .category-list{
     margin-bottom: 20px;
+
+    .category-title{
+        font-size: 24px;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .item-desc{
+        padding-left: 20px;
+    }
+
+    .item-amount{
+        text-align: right;
+    }
+
+    .checkbox{
+        --checkmark-color: white;
+    }
 }
 
-.checkbox{
-    --checkmark-color: white;
-}
-
-.ellipse-btn{
-    font-size: 50px;
-}
-
-.delete{
-    color: #f75b5b;
+.empty-container{
+    color: rgba(128, 128, 128, 0.596);
+    width: 100%;
     text-align: center;
+    margin-top: 60%;
 }
 
-.item-amount{
-    text-align: right;
-}
+

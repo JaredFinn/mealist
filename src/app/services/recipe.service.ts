@@ -32,7 +32,13 @@ export class RecipeService {
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
       })
     };
-    this.http.post<any>(`http://localhost:8080/recipes/ingredients/` + recipe_id, httpOptions).subscribe(() => {
+    this.http.post<any>(`http://localhost:8080/add/recipe/` + recipe_id, httpOptions).subscribe(() => {
+        this.getListFromDB();
+    });
+  }
+  
+  addToListByIngredients(recipe_id: number, ingredients: any[]){
+    this.http.post<any>(`http://localhost:8080/add/ingredients/` + recipe_id, { body: ingredients }).subscribe(() => {
         this.getListFromDB();
     });
   }

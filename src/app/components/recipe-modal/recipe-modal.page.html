@@ -7,7 +7,7 @@
   <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
   <ion-title class="recipe-title">{{ recipe.recipe_name }}</ion-title>
   <ion-label class="description">Description: n/a</ion-label>
-  <ion-button class="add-ingredients-btn"> + Add Ingredients </ion-button>
+  <ion-button class="add-ingredients-btn" (click)="addIngredientsToList()"> + Add Ingredients </ion-button>
 </ion-header>
 
 <ion-content>
@@ -18,7 +18,7 @@
       <ion-item>
         <ion-label class="ingredient-desc">{{ ingredient.ingredient_name }}</ion-label>
         <ion-label class="ingredient-amount" slot="end">{{ ingredient.measurement_qty_desc == null ? '' : ingredient.measurement_qty_desc }} {{ ingredient.measurement_desc == null ? '' : ingredient.measurement_desc }} </ion-label>
-        <ion-toggle class="toggle" [checked]="true" slot="end"></ion-toggle>
+        <ion-toggle class="toggle" [checked]="true" slot="end" (ionChange)="handleToggle(ingredient, $event)"></ion-toggle>
       </ion-item>
     </ng-container>
     

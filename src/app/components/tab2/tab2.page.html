@@ -9,10 +9,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" [appHideHeader]="header" scrollEvents="true">
+<ion-content [fullscreen]="true" [appHideHeader]="header" scrollEvents="false">
 
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Dairy')">
+  <ng-container *ngIf="filteredGroceryList.length === 0">
+    <div class="empty-container">
+      <ion-label>No List Items</ion-label>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Dairy')">
+      <ion-list-header class="category-title" >
         Dairy
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -26,8 +33,8 @@
       
     </ion-list>
   
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Meat & Fish')">
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Meat & Fish')">
+      <ion-list-header class="category-title" >
         Meat & Fish
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -40,8 +47,8 @@
       </ng-container>
     </ion-list>
 
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Fruits & Vegetables')">
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Fruits & Vegetables')">
+      <ion-list-header class="category-title">
         Fruits & Vegetables
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -54,8 +61,8 @@
       </ng-container>
     </ion-list>
 
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Condiments & Spices')">
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Condiments & Spices')">
+      <ion-list-header class="category-title">
         Condiments & Spices
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -68,8 +75,8 @@
       </ng-container>
     </ion-list>
 
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Pasta, rice, cereals')">
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Pasta, rice, cereals')">
+      <ion-list-header class="category-title">
         Pasta, Rice, Cereals
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -82,8 +89,8 @@
       </ng-container>
     </ion-list>
 
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Canned Goods')">
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Canned Goods')">
+      <ion-list-header class="category-title">
         Canned Goods
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -96,8 +103,8 @@
       </ng-container>
     </ion-list>
 
-    <ion-list class="category-list">
-      <ion-list-header class="category-title" *ngIf="handleEmptyCategory('Bread & Baked Goods')">
+    <ion-list class="category-list" *ngIf="handleEmptyCategory('Bread & Baked Goods')">
+      <ion-list-header class="category-title">
         Bread & Baked Goods
       </ion-list-header>
       <ng-container *ngFor="let item of filteredGroceryList">
@@ -109,5 +116,7 @@
         </ion-item>
       </ng-container>
     </ion-list>
+  </ng-container>
+    
 
 </ion-content>
