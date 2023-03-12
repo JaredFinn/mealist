@@ -10,16 +10,22 @@ import { ModalController } from '@ionic/angular';
 export class RecipeModalPage implements OnInit {
 
   @Input() recipe: any;
+  @Input() isCurrentFavorite: any;
 
   ingredients: any[] = [];
 
   ingredientsToAdd: any[] = [];
+
+  isFavorite = false;
 
   constructor(private recipeService: RecipeService, private modalController: ModalController) { }
 
   ngOnInit() {
     console.log(this.recipe);
     this.getIngredients();
+    if(this.isCurrentFavorite){
+      this.isFavorite = this.isCurrentFavorite;
+    }
   }
 
   getIngredients(){
@@ -28,6 +34,15 @@ export class RecipeModalPage implements OnInit {
       this.ingredients = ingredients;
       this.ingredientsToAdd = ingredients.slice();
     });
+  }
+
+  toggleFavorite(recipe_id: number) {
+    this.isFavorite = !this.isFavorite;
+    if(this.isFavorite){
+      this.recipeService.addFavorite(recipe_id);
+    }else{
+      this.recipeService.removeFavorite(recipe_id);
+    }
   }
 
   getImage(recipe_image: string): string {

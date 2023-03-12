@@ -1,26 +1,4 @@
-/* iOS places the subtitle above the title */
-ion-card-header.ios {
-    display: flex;
-    flex-flow: column-reverse;
-  }
 
-  ion-content{
-    margin: 20px;
-  }
-
-  ion-toolbar{
-    --background: white;
-  }
-
-  .app-title{
-    font-size: 32px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .logo{
-    margin: auto;
-    height: 50px;
-  }
 
   .card-title{
     margin-top: 20px;
@@ -35,11 +13,6 @@ ion-card-header.ios {
 
 .slides{
   padding: 10px;
-}
-
-.slide{
-  height: 180px;
-
 }
 
 .spotlight-btn{
@@ -57,17 +30,6 @@ ion-card-header.ios {
   font-size: 40px;
 }
 
-.featured-title{
-  margin: 10px;
-  text-align: center;
-  font-size: 30px;
-  font-weight: 300;
-}
-
-.recipe-container{
-  height: 180px;
-}
-
 .recipe-title{
   text-align: left;
   font-size: 16px;
@@ -83,15 +45,6 @@ ion-card-header.ios {
   height: 148px;
 }
 
-.card-header{
-  display: flex;
-}
-
-.spotlight-add-btn{
-  width: 60px;
-  height: 60px;
-  margin-right: 15px;
-}
 
 .add-btn{
   width: 40px;
@@ -102,23 +55,6 @@ ion-card-header.ios {
   }
 }
 
-.nutrient-title{
-  text-align: left;
-}
-
-.recipe-card-content{
-  display: block;
-
-}
-
-.card-button-col{
-  text-align: right;
-  margin-top: auto;
-}
-
-.card-add-btn{
-  width: 100%;
-}
 
 .btn-icon{
   color: white;
@@ -128,70 +64,29 @@ ion-card-header.ios {
   border-radius: 5px;
 }
 
-.search-icon{
-  margin: 2%;
-}
-
-.search-mode {
-  background-color: lightgrey;
-}
-
-.searchbar{
-  padding: 25px;
-}
-
-ion-header {
-  .settings{
-    margin-right: 10px;
-  }
-  ion-toolbar {
-    ion-buttons {
-      ion-icon {
-        font-size: 2rem;
-      }
-    }
-  }
-}
-
-.overlay {
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  overflow: auto;
-  top: 0px;
-  left: 0px;
-  background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
-}
-
 .spotlight{
-
-
   .large-spotlight {
     border-bottom: solid 1px #fff;
     color: #fff;
     text-align: center;
     height: 100%;
   }
-
-  .small-spotlight {
-    border-right: solid 1px #fff;
-    color: #fff;
-    text-align: center;
-    height: 130px;
-  }
-
-  .last{
-    border-right: none !important;
-  }
-}
-
-ion-toolbar {
-  --background-color: transparent;
-  --ion-color-base: transparent !important;
 }
 
 .search-card{
   margin-left: 30px;
   margin-top: 20px;
+}
+
+.favorite-button {
+  left: 0;
+  color: white;
+  margin-left: 45px;
+  ion-icon.heart {
+    color: white;
+  }
+}
+
+.recipe-card-search {
+  margin: 16px;
 }

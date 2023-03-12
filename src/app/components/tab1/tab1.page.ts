@@ -21,6 +21,10 @@ export class Tab1Page {
   openedRecipe: any;
 
   rows: any[] = [];
+
+  isFavorite = false;
+
+  favorites!: any[];
   
   slideOpts = {
 		slidesPerView: 2.4,
@@ -41,8 +45,15 @@ export class Tab1Page {
 
   ngOnInit(){
     this.getRecipes();
+    this.getFavorites();
   }
-  
+
+  getFavorites(){
+    this.recipeService.getFavorites().subscribe((data) => {
+      this.favorites = data;
+      console.log(this.favorites)
+    });
+  }
 
   hideContent() {
     this.showContent = !this.showContent;
@@ -77,11 +88,18 @@ export class Tab1Page {
 
   async openModal(recipe: any) {
 
+    const isCurrentFavorite = this.favorites.some((favorite:any) => recipe.recipe_id === favorite.recipe_id);
+
     const modal = await this.modalController.create({
       component: RecipeModalPage,
-      componentProps: {recipe: recipe},
+      componentProps: {recipe: recipe, isCurrentFavorite: isCurrentFavorite},
       cssClass: 'modal'
     })
+
+    modal.onDidDismiss().then(() => {
+      this.getFavorites();
+    });
+  
     
     await modal.present();
   }

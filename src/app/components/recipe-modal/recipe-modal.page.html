@@ -5,6 +5,11 @@
     </ion-fab-button>
   </ion-fab> -->
   <ion-img class="recipe-img" [src]="getImage(recipe.recipe_image)" alt=""></ion-img>
+  <ion-fab vertical="top" horizontal="end">
+    <ion-fab-button class="favorite-button add-btn" (click)="toggleFavorite(recipe.recipe_id)">
+      <ion-icon class="btn-icon" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-title class="recipe-title">{{ recipe.recipe_name }}</ion-title>
   <ion-label class="description">Description: n/a</ion-label>
   <ion-button class="add-ingredients-btn" (click)="addIngredientsToList()"> + Add Ingredients </ion-button>

@@ -43,6 +43,22 @@ export class RecipeService {
     });
   }
 
+  getFavorites(){
+    return this.http.get<any>(`http://localhost:8080/get/favorites`);
+  }
+
+  addFavorite(recipeId: number){
+    this.http.post<any>(`http://localhost:8080/add/favorites/` + recipeId, {}).subscribe(() => {
+      //
+    });
+  }
+
+  removeFavorite(recipeId: number){
+    this.http.delete<any>(`http://localhost:8080/delete/favorites/` + recipeId, {}).subscribe(() => {
+      //
+    });
+  }
+
   getListFromDB(){
     this.http.get<any>(`http://localhost:8080/list`).subscribe((data: any) => {
       this.groceryList = data;
@@ -60,4 +76,6 @@ export class RecipeService {
   deleteItems(items: number[]): Observable<any>{
     return this.http.delete<any>(`http://localhost:8080/list/delete`, { body: items });
   }
+
+  
 }
